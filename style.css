@@ -1,0 +1,136 @@
+/* Styles for the main heading */
+h1 {
+  font-size: 36px;
+  text-align: center;
+  margin-top: 50px;
+  font-family: Helvetica, Arial, sans-serif;
+  color: #acacbe;
+}
+
+/* Styles for the subheadings */
+h2 {
+  font-size: 24px;
+  margin-top: 30px;
+  font-family: Helvetica, Arial, sans-serif;
+  color: #acacbe;
+}
+
+/* Styles for the incomplete tasks */
+ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+  max-height: 300px; /* set the maximum height for the list */
+  overflow-y: auto; /* add a scrollbar when the list exceeds the maximum height */
+}
+
+ul li {
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+input[type="text"] {
+  font-size: 18px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  flex-grow: 1;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+button[type="submit"] {
+  font-size: 18px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.save-button {
+  background-color: #715fde;
+  color: #acacbe;
+}
+
+/* Styles for the completed tasks */
+ul:last-of-type {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+  max-height: 300px; /* set the maximum height for the list */
+  overflow-y: auto; /* add a scrollbar when the list exceeds the maximum height */
+}
+
+ul:last-of-type li {
+  font-size: 18px;
+  margin-bottom: 10px;
+  font-family: Helvetica, Arial, sans-serif;
+  color: #acacbe;
+}
+
+/* Styles for the form to add a new task */
+form:last-of-type {
+  margin-top: 50px;
+  color: #ffffff;
+}
+
+label {
+  font-size: 18px;
+  font-family: Helvetica, Arial, sans-serif;
+  color: #acacbe;
+}
+
+input[type="text"],
+button[type="submit"] {
+  margin-left: 10px;
+}
+
+button[type="submit"] {
+  background-color: #715fde;
+  color: #ffffff;
+}
+
+/* Dark mode */
+body.dark-mode {
+  background-color: #353740;
+}
+
+input[type="text"].dark-mode {
+  background-color: #6e6e80;
+  color: #ffffff;
+  border: 1px solid #353740;
+}
+
+.collapsed {
+  display: none;
+}
+
+/* Light mode */
+body.light-mode {
+  background-color: #ffffff;
+}
+
+input[type="text"].light-mode {
+  background-color: #f0f0f0;
+  color: #353740;
+  border: 1px solid #ccc;
+}
+
+.arrow {
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+}
+
+.right {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+
+.down {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}

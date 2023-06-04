@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- CSS style sheet -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <!-- Main heading for the page -->
+  <title>To-Do List</title>
+  <!-- Button position -->
+  <style>
+    #logout_button {
+      position: fixed;
+      top: 2px;
+      right: 2px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Add the sort menu -->
+  <form action="{{ url_for('index') }}" method="GET">
+    <label for="sort_by">Sort by:</label>
+    <select id="sort_by" name="sort_by">
+      <option value="due_date">Due date</option>
+      <option value="task">Task name</option>
+    </select>
+    <button type="submit">Sort</button>
+  </form>
+  <!-- Button to logout -->
+  <form action="{{ url_for('logout')}}" method="POST">
+    <button id="logout_button" type="submit">Logout</button>
+  </form>
+  </form>
+  <!-- Toggle button for dark mode -->
+  <button id="dark-mode-toggle-button">Change to Light Mode</button>
+  <!-- Add a form to update dark mode preference -->
+  <form id="dark-mode-form" action="{{ url_for('dark_mode') }}" method="POST" style="display: none;">
+    <input type="hidden" name="dark_mode" id="dark-mode-input" value="{{ '1' if dark_mode else '0' }}">
+  </form>
+  <!-- Button to collapse incomplete tasks -->
+  <button id="collapse_Button1" class="collapse-button" onclick="toggleCollapse('incomplete-tasks', this)" style="display: block;">
+    <span class="arrow right"></span>
+  </button>  
+  <!-- Subheading for the incomplete tasks -->
+  <h2>Incomplete Tasks</h2>
+  <!-- Incomplete tasks list container -->
+  <div class="incomplete-tasks-container" id="incomplete-tasks">
+    <!-- Loop through the incomplete tasks -->
+    <ul>
+      {% for task in incomplete_tasks %}
+      <li>
+        <!-- Create a form for editing the task -->
+        <form action="{{ url_for('edit_task', id=task[0]) }}" method="POST">
+          <!-- Create an input field for the new task name, and display the current task name in it -->
+          <input type="text" name="new_task" value="{{ task[1] }}" oninput="toggleSaveButton(this)">
+          <!-- Create a save button, initially hidden -->
+          <button type="submit" class="save-button" style="display: none;">Save</button>
+        </form>
+        <!-- Add the date here -->
+        <span class="task-date">{{ display_date(task[3]) }}</span>
+        <!-- Create a form for completing the task -->
+        <form action="{{ url_for('complete_task', id=task[0]) }}" method="POST">
+          <!-- Create a complete button -->
+          <button type="submit">Complete</button>
+        </form>
+      </li>
+      {% endfor %}
+      <!-- End of the incomplete tasks loop -->
+    </ul>
+  </div>
+    <!-- Button to collapse completed tasks -->
+    <button id="collapse_Button2" class="collapse-button" onclick="toggleCollapse('completed-tasks', this)" style="display: block;">
+      <span class="arrow right"></span>
+    </button>
+  <!-- Subheading for the completed tasks -->
+  <h2>Completed Tasks</h2>
+  <!-- Completed tasks list container -->
+  <div class="completed-tasks-container" id="completed-tasks">
+    <!-- Loop through the completed tasks -->
+    <ul>
+      {% for task in completed_tasks %}
+      <!-- Display the name of the completed task -->
+      <li>
+        {{ task[1] }}
+        <!-- Create a form to remove the completed task -->
+        <form action="{{ url_for('remove_task', id=task[0]) }}" method="POST">
+          <!-- Create a remove button -->
+          <button type="submit">Remove</button>
+        </form>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  <!-- Create a form to add a new task -->
+  <form action="{{ url_for('add') }}" method="POST">
+    <label for="task">Task:</label>
+    <input type="text" id="task" name="task" required>
+    <label for="due-date">Due Date:</label>
+    <input type="date" id="due-date" name="due_date">
+    <button type="submit">Add Task</button>
+  </form>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

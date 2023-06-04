@@ -1,5 +1,5 @@
 To-Do Web Application
-This is an open-source To-Do web application project developed by Raphael, Flavio, and Tibor. The application allows users to manage their tasks effectively. It is built using Python, Flask, and SQLite.
+This is an open-source To-Do web application project developed by dreamingdodo. The application allows users to manage their tasks effectively. It is built using Python, Flask, and SQLite.
 
 Getting Started
 Before running the app.py file, please follow these instructions:

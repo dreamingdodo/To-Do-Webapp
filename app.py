@@ -247,11 +247,10 @@ def remove_task(id):
 @app.route('/edit/<id>', methods=['POST'])
 def edit_task(id):
     new_task = request.form['new_task']
-    new_due_date = request.form['due_date']
     username = session['username']
     conn = sqlite3.connect('task_master.db')
     c = conn.cursor()
-    c.execute(f"UPDATE '{username}' SET task = ?, due_date = ? WHERE id = ?", (new_task, new_due_date, id))
+    c.execute(f"UPDATE '{username}' SET task = ? WHERE id = ?", (new_task, id))
     conn.commit()
     conn.close()
     return redirect('/')
